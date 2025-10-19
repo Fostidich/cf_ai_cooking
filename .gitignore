@@ -1,0 +1,11 @@
+# IDEs
+.vscode
+.idea
+.vim
+
+# Misc
+.env
+_typos.toml
+.cache
+.DS_Store
+
