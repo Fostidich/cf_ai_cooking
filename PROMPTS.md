@@ -6,13 +6,17 @@ This file documents the AI prompts used during development, as required by Cloud
 
 ### Idea and choices evaluation
 
-Prompt: requested extensive documentation about the CloudFlare's technologies cited in the project request
+Prompt: "Explain in detail how this Cloudflare technologies work: Workers AI, Workflows, Durable Objects, and Pages."
 
 Goal: I wanted to be sure of choosing and adopting project-optimal tools.
 
 ---
 
-Prompt: requested a deep judgment for the features and the tech stack I've personally produced and proposed (as found in the first hand-written README).
+Prompt: "Do you think that this is a feasible idea, especially regarding the tech stack?"
 
-Outcome: the whole idea and choices came up as perfectly solid; no changes were needed.
+Attachment: the README I personally wrote, as found in the first commit.
+
+Outcome: the whole idea and choices came up as perfectly solid; no changes seemed to be needed.
+
+### Repository and code preparation
 

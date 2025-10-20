@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "bundler",
+        "target": "ESNext",
+        "module": "ESNext",
+        "jsx": "react-jsx",
+        "strict": true,
+        "baseUrl": "."
+    },
+    "include": ["frontend", "backend"]
+}
+

@@ -5,7 +5,11 @@
 
 # Misc
 .env
-_typos.toml
 .cache
 .DS_Store
+_typos.toml
+
+# Node
+node_modules/
+dist/
 

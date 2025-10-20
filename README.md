@@ -1,43 +1,73 @@
-# Cooking
+# React + TypeScript + Vite
 
-## Features
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-### Grocery generation
+Currently, two official plugins are available:
 
-Users can set up a list of all the meals they intend to consume during the week.
-This comprehends breakfast, launch, and dinner, and additional snacks.
-Moreover, user can also select a set of week days in which it is available for go and buy groceries.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-The AI assistant then takes over, generating a groceries list for each of the selected days, so that what's bought will fulfill the whole preparation of the days-after meals, ingredient-wise.
+## React Compiler
 
-### Recipe support
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-Users can select one of their meals included in the weekdays (or prompt for a new one) to ask the AI assistant for a pointed list describing how the recipe should proceed, including quantities, cook times and good practices.
-In this way the user receives a simple and comprehensible todo list for the meal preparation, aware of the groceries previously fetched.
+## Expanding the ESLint configuration
 
-### Suggestions creation
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-Often times people forget to plan ahead what to eat, and what's home feels either insufficient or unenjoyable.
-It is possible for users to prompt the AI assistant with which ingredients are available in the house, for then receiving a set of meals ready to prepare and eat.
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-## Usage
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-The user will be able to use the app via the browser, and therefore must be connected to the internet to be able to interact with the AI assistant, and to view its data.
-A minimal UI will provide easy access to the main sections/pages:
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-- a page for inserting the week's meals and generating/viewing the groceries list;
-- a page for prompting the AI assistant for the recipes steps;
-- a page for inserting which ingredients the user has available and for then requesting possible meals.
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-Moreover, a floating, pop-up helper panel is always available to expand, for interacting with a chatbot aware of what the user has previously provided.
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-## Tech stack
-
-- The AI assistant will be implemented via API calls to CloudFlare's Workers AI LLM.
-- Stateful, multi-step AI assistant interactions will be achieved via CloudFlare's Workflow.
-- To let users message with the AI assistant, a web app UI made with CloudFlare's Page will be developed.
-- To store user data and past generated content, CloudFlare's Durable Objects will be in use.
-
-The language used will be TypeScript, as Cloudflare Workers support it natively.
-Moreover, it integrates seamlessly with UI frameworks such as React.
-
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
