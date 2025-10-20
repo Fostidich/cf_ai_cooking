@@ -3,8 +3,9 @@
     "version": "0.1.0",
     "type": "module",
     "scripts": {
-        "dev": "vite frontend",
-        "build": "vite build frontend"
+        "build:frontend": "vite build",
+        "dev:frontend": "vite",
+        "dev:backend": "wrangler pages dev"
     },
     "dependencies": {
         "react": "^19.2.0",
@@ -15,7 +16,8 @@
         "@types/react-dom": "^19.2.2",
         "@vitejs/plugin-react": "^5.0.4",
         "typescript": "^5.9.3",
-        "vite": "^7.1.11"
+        "vite": "^7.1.11",
+        "wrangler": "^4.43.0"
     }
 }
 
